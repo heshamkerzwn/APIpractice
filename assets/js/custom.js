@@ -28,7 +28,7 @@ async function getMoshaf(re) {
   moshafs.forEach((element) => {
     chooseRewaya.innerHTML += `<option value="${element.id}" data-server="${element.server}" data-surahlist = "${element.surah_list}">${element.name}</option>`;
   });
-  chooseRewaya.addEventListener("click", (e) => {
+  chooseRewaya.addEventListener("change", (e) => {
     const selectedMoshaf = chooseRewaya.options[chooseRewaya.selectedIndex];
     const server = selectedMoshaf.dataset.server;
     const surah = selectedMoshaf.dataset.surahlist;
@@ -49,7 +49,7 @@ async function getSurah(server, surah) {
       }
     });
   });
-  chooseSurah.addEventListener("click", (e) => {
+  chooseSurah.addEventListener("change", (e) => {
     const selectedSurah = chooseSurah.options[chooseSurah.selectedIndex];
     playSurah(selectedSurah.value);
   });
