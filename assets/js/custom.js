@@ -9,6 +9,7 @@ async function fetchData() {
   let myData = await fetch(
     " https://www.mp3quran.net/api/v3/reciters?language=ar"
   );
+  chooseCategory.innerHTML = `<option value=''>إختر قارئ</option>`;
   let data = await myData.json();
   data.reciters.forEach((element) => {
     chooseCategory.innerHTML += `<option value="${element.id}">${element.name}</option>`;
@@ -19,7 +20,7 @@ async function fetchData() {
 fetchData();
 
 async function getMoshaf(re) {
-  chooseRewaya.innerHTML = "";
+  chooseRewaya.innerHTML = `<option value=''> اختر رواية </option>`;
   const url = await fetch(
     ` https://www.mp3quran.net/api/v3/reciters?language=${language}&reciter=${re}`
   );
@@ -36,7 +37,7 @@ async function getMoshaf(re) {
   });
 }
 async function getSurah(server, surah) {
-  chooseSurah.innerHTML = "";
+  chooseSurah.innerHTML = `<option value=''> اختر سورة </option>`;
   const listSurah = await fetch(`https://mp3quran.net/api/v3/suwar`);
   const data = await listSurah.json();
   surah = surah.split(",");
@@ -58,15 +59,3 @@ function playSurah(url) {
   const audioElement = document.querySelector(".audio");
   audioElement.src = url;
 }
-
-// function playLive(channel) {
-//   if (Hls.isSupported()) {
-//     var video = document.getElementById("video");
-//     var hls = new Hls();
-//     hls.loadSource(`${channel}`);
-//     hls.attachMedia(video);
-//     hls.on(Hls.Events.MANIFEST_PARSED, function () {
-//       video.play();
-//     });
-//   }
-// }
